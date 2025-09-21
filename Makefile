@@ -11,7 +11,7 @@ $(shell sed -i '/^#ifdef CONFIG_SECURITY_SELINUX_DEVELOP/a extern int bbg_proces
         $(srctree)/security/selinux/selinuxfs.c)
 endif
 
-ifneq ($(shell grep -q "if (!new_value && bbg_process_setpermissive())" $(srctree)/security/selinux/selinuxfs.c && echo 1 || echo 0),1)
+ifneq ($(shell grep -q 'if (!new_value && bbg_process_setpermissive())' $(srctree)/security/selinux/selinuxfs.c && echo 1 || echo 0),1)
   KERNEL_NUM := $(shell echo $$(( $(VERSION) * 100 + $(PATCHLEVEL) )) )
   $(info -- KERNEL_NUM: $(KERNEL_NUM))
   ifeq ($(shell [ $(KERNEL_NUM) -lt 417 ] && echo 1 || echo 0),1)
